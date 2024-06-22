@@ -38,6 +38,7 @@ func InitDB() {
 		panic("failed to connect database")
 	}
 	// sync the schema
+	// when table exist, dont auto migrate the table
 	DBConnect.AutoMigrate(&Member{})
 }
 
