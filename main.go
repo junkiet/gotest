@@ -1,16 +1,25 @@
 package main
 
-func main() {
-	// cards := deck{"Ace of Diamonds", newCard()}
-	// cards = append(cards, "Six of Spades")
+import (
+	"fmt"
+	"goapi/db"
+)
 
-	// cards.save("my_cards")
-	// cards.readFile("my_cards")
-	// cards.print()
-	cards := newDeck()
-	cards.print()
+func init() {
+	db.InitDB()
+
+	// check the connection
+	sqlDB, err := db.DBConnect.DB()
+	if err != nil {
+		panic("failed to get database")
+	}
+	// check if db connection is open
+	err = sqlDB.Ping()
+	if err != nil {
+		panic("failed to ping database")
+	}
+	fmt.Println("Connected to the database!")
 }
 
-func newCard() string {
-	return "Five of Diamonds"
+func main() {
 }
