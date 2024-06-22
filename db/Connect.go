@@ -5,6 +5,7 @@ import (
 
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
+	"gorm.io/gorm/schema"
 )
 
 var DBConnect *gorm.DB
@@ -20,7 +21,13 @@ func InitDB() {
 		username, password, host, port, dbname, timeout)
 
 	var err error
-	DBConnect, err = gorm.Open(mysql.Open(dsn), &gorm.Config{})
+	DBConnect, err = gorm.Open(mysql.Open(dsn), &gorm.Config{
+		NamingStrategy: schema.NamingStrategy{
+			TablePrefix:   "jk_",
+			SingularTable: false,
+			NoLowerCase:   false,
+		},
+	})
 	if err != nil {
 		panic("failed to connect database")
 	}
