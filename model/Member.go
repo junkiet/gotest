@@ -2,60 +2,6 @@ package model
 
 import "time"
 
-// CREATE TABLE `jk_members` (
-//   `ID` bigint(20) NOT NULL,
-//   `RefID_FK` int(11) NOT NULL,
-//   `RefUsername` varchar(60) NOT NULL,
-//   `RefIDTreeLevel` int(11) NOT NULL,
-//   `ImageCoverID_FK` int(11) NOT NULL,
-//   `Username` varchar(100) NOT NULL,
-//   `Password` varchar(100) NOT NULL,
-//   `SecPassword` varchar(70) NOT NULL,
-//   `PasswordEncode` varchar(60) NOT NULL,
-//   `SecPasswordEncode` varchar(70) NOT NULL,
-//   `Name` varchar(100) NOT NULL,
-//   `Email` varchar(100) NOT NULL,
-//   `Phone` varchar(40) NOT NULL,
-//   `Code` varchar(12) NOT NULL,
-//   `Lang` varchar(10) NOT NULL DEFAULT 'en',
-//   `Country` varchar(30) NOT NULL,
-//   `UWallet` decimal(20,6) NOT NULL COMMENT 'USDT',
-//   `CWallet` decimal(20,6) NOT NULL COMMENT 'CashChip',
-//   `RWallet` decimal(20,6) NOT NULL COMMENT 'RollingChip',
-//   `IWallet` decimal(20,6) NOT NULL COMMENT 'Insurance',
-//   `WWallet` decimal(20,6) NOT NULL COMMENT 'WINT',
-//   `SWallet` decimal(20,6) NOT NULL COMMENT 'Reward',
-//   `MWallet` decimal(20,8) NOT NULL,
-//   `OWallet` decimal(20,6) NOT NULL,
-//   `JoinedDate` datetime NOT NULL,
-//   `Status` varchar(30) NOT NULL DEFAULT 'demo' COMMENT 'active, terminated, demo',
-//   `Ranking` tinyint(4) NOT NULL,
-//   `Remark` text NOT NULL,
-//   `TotalDownlines` int(11) NOT NULL,
-//   `LastLogin` datetime NOT NULL,
-//   `LastLogin2` datetime NOT NULL,
-//   `IsRobot` tinyint(4) NOT NULL DEFAULT 0,
-//   `IsVip` tinyint(4) NOT NULL DEFAULT 0,
-//   `VIPDaily` int(11) NOT NULL DEFAULT 0,
-//   `WalletAddress` varchar(100) NOT NULL,
-//   `AutoRanking` enum('y','n') NOT NULL DEFAULT 'y',
-//   `TransferTo` int(11) NOT NULL,
-//   `MaxWithdraw` decimal(12,2) NOT NULL,
-//   `CreatedAt` datetime NOT NULL,
-//   `UpdatedAt` datetime NOT NULL COMMENT 'Modified Date'
-// ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
-// ALTER TABLE `jk_members`
-//   ADD PRIMARY KEY (`ID`),
-//   ADD KEY `Username` (`Username`),
-//   ADD KEY `Status` (`Status`),
-//   ADD KEY `RefIDTreeLevel` (`RefIDTreeLevel`),
-//   ADD KEY `RefID_FK` (`RefID_FK`),
-//   ADD KEY `Code` (`Code`),
-//   ADD KEY `IsRobot` (`IsRobot`),
-//   ADD KEY `IsVip` (`IsVip`),
-//   ADD KEY `TransferTo` (`TransferTo`);
-
 type Member struct {
 	ID                uint      `gorm:"column:ID;primary_key"`
 	RefID             uint      `gorm:"column:RefID_FK;not null;index:RefID_FK"`
