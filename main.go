@@ -2,14 +2,14 @@ package main
 
 import (
 	"fmt"
-	"goapi/db"
+	"goapi/mysql"
 )
 
 func init() {
-	db.InitDB()
+	mysql.Connect()
 
 	// check the connection
-	sqlDB, err := db.DBConnect.DB()
+	sqlDB, err := mysql.DBConnect.DB()
 	if err != nil {
 		panic("failed to get database")
 	}

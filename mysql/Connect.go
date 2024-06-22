@@ -1,8 +1,9 @@
-package db
+package mysql
 
 import (
 	"fmt"
-	"time"
+
+	"goapi/model"
 
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
@@ -12,7 +13,7 @@ import (
 
 var DBConnect *gorm.DB
 
-func InitDB() {
+func Connect() {
 	username := "root"
 	password := ""
 	host := "127.0.0.1"
@@ -39,14 +40,5 @@ func InitDB() {
 	}
 	// sync the schema
 	// when table exist, dont auto migrate the table
-	DBConnect.AutoMigrate(&Member{})
-}
-
-type Member struct {
-	ID        uint      `gorm:"column:ID;primary_key"`
-	Name      string    `gorm:"column:Name;type:varchar(60);not null"`
-	Email     string    `gorm:"column:Email;type:varchar(100);unique_index;not null"`
-	Password  string    `gorm:"column:Password;type:varchar(100);not null"`
-	CreatedAt time.Time `gorm:"column:CreatedAt;type:datetime;default:CURRENT_TIMESTAMP"`
-	UpdatedAt time.Time `gorm:"column:UpdatedAt;type:datetime;default:CURRENT_TIMESTAMP"`
+	DBConnect.AutoMigrate(&model.Member{})
 }
