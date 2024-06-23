@@ -33,8 +33,7 @@ func init() {
 func main() {
 	var members []model.Member
 	// find all and order by ID in descending order
-	ids := []uint{1, 1165}
-	result := DB.Select("Name", "Email").Find(&members, ids)
+	result := DB.Select("Name", "Email").Limit(1).Offset(1).Find(&members)
 	if result.Error != nil {
 		fmt.Println("Error fetching:", result.Error)
 		return

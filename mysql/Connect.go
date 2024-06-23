@@ -11,8 +11,6 @@ import (
 	"gorm.io/gorm/schema"
 )
 
-var DBConnect *gorm.DB
-
 func Connect() {
 	username := "root"
 	password := ""
@@ -27,6 +25,7 @@ func Connect() {
 		username, password, host, port, dbname, timeout)
 
 	var err error
+	var DBConnect *gorm.DB
 	DBConnect, err = gorm.Open(mysql.Open(dsn), &gorm.Config{
 		Logger: mysqlLogger,
 		NamingStrategy: schema.NamingStrategy{
