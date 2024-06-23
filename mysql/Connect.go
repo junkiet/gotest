@@ -18,7 +18,7 @@ func Connect() {
 	password := ""
 	host := "127.0.0.1"
 	port := 3306
-	dbname := "gotest"
+	dbname := "wm"
 	timeout := "10s"
 
 	var mysqlLogger logger.Interface = logger.Default.LogMode(logger.Info)
