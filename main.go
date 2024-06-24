@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"goapi/controller"
 	"log"
 	"net/http"
@@ -128,6 +129,7 @@ func main() {
 
 func autoRegisterHandlers(router *Router) {
 	controllers := []interface{}{
+		&controller.IndexController{},
 		&controller.HomeController{},
 		&controller.AboutController{},
 	}
@@ -137,7 +139,15 @@ func autoRegisterHandlers(router *Router) {
 		for i := 0; i < ctrlType.NumMethod(); i++ {
 			method := ctrlType.Method(i)
 			if strings.HasSuffix(method.Name, "Handler") {
-				route := "/" + strings.ToLower(strings.TrimSuffix(method.Name, "Handler"))
+				fmt.Printf("Found handler method: %s\n", method.Name)
+
+				var route string
+				if method.Name == "IndexHandler" {
+					route = "/"
+				} else {
+					route = "/" + strings.ToLower(strings.TrimSuffix(method.Name, "Handler"))
+				}
+
 				handler := func(w http.ResponseWriter, r *http.Request) {
 					reflect.ValueOf(ctrl).MethodByName(method.Name).Call([]reflect.Value{
 						reflect.ValueOf(w),
@@ -145,6 +155,7 @@ func autoRegisterHandlers(router *Router) {
 					})
 				}
 				router.Handle(route, handler)
+				fmt.Printf("Registered handler for route: %s\n", route)
 			}
 		}
 	}
