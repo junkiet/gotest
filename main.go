@@ -1,30 +1,17 @@
-// main.go
 package main
 
 import (
-	"fmt"
-	"net/http"
+	"goapi/controller"
 
-	"goapi/controller" // Import your controller package
-
-	"github.com/gorilla/mux"
+	"github.com/gin-gonic/gin"
 )
 
 func main() {
-	r := mux.NewRouter()
+	r := gin.Default()
 
-	// Register handlers dynamically from controller package
-	registerHandlers(r)
+	// Load routes from controllers
+	controller.RegisterRoutes(r)
 
-	// Start the server
-	fmt.Println("Server listening on port 8080")
-	http.ListenAndServe(":8080", r)
-}
-
-func registerHandlers(r *mux.Router) {
-	// Register home handler
-	r.HandleFunc("/", controller.HomeHandler)
-
-	// Register about handler
-	r.HandleFunc("/about", controller.AboutHandler)
+	// Start the server on port 8080
+	r.Run(":8080")
 }
