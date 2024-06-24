@@ -23,6 +23,14 @@ func OKWithData(c *gin.Context, data any) {
 	})
 }
 
+func ErrorWithData(c *gin.Context, code int, msg string, data any) {
+	c.JSON(code, Response{
+		Code: code,
+		Msg:  msg,
+		Data: data,
+	})
+}
+
 func BadRequest(c *gin.Context, data any) {
 	c.JSON(400, Response{
 		Code: 400,
