@@ -1,9 +1,10 @@
 package controller
 
-import "net/http"
+import (
+	"net/http"
+)
 
-type AboutController struct{}
-
-func (a *AboutController) AboutHandler(w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte("About Handler"))
+func AboutHandler(w http.ResponseWriter, r *http.Request) {
+	// Handle about route logic here
+	w.Write([]byte("About us page"))
 }
