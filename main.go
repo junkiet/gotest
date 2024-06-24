@@ -139,8 +139,6 @@ func autoRegisterHandlers(router *Router) {
 		for i := 0; i < ctrlType.NumMethod(); i++ {
 			method := ctrlType.Method(i)
 			if strings.HasSuffix(method.Name, "Handler") {
-				fmt.Printf("Found handler method: %s\n", method.Name)
-
 				var route string
 				if method.Name == "IndexHandler" {
 					route = "/"
