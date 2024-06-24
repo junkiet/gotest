@@ -1,7 +1,7 @@
 package controller
 
 import (
-	"net/http"
+	"goapi/dataType"
 
 	"github.com/gin-gonic/gin"
 )
@@ -11,10 +11,10 @@ func init() {
 		Method: "GET",
 		Path:   "/list/member",
 		Handler: func(c *gin.Context) {
-			c.JSON(http.StatusOK, gin.H{
-				"code": 200,
-				"msg":  "success",
-				"data": "List Member",
+			c.JSON(200, dataType.Response{
+				Code: 200,
+				Msg:  "success",
+				Data: "List Member",
 			})
 		},
 	})
