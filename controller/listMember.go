@@ -1,6 +1,8 @@
 package controller
 
 import (
+	"goapi/model"
+	"goapi/mysql"
 	"goapi/res"
 
 	"github.com/gin-gonic/gin"
@@ -11,7 +13,17 @@ func init() {
 		Method: "GET",
 		Path:   "/list/member",
 		Handler: func(c *gin.Context) {
-			res.OKWithData(c, "List Member")
+			var members []model.Member
+
+			// find member ID = 3, and return in json
+
+			mysql.DB.Where("id = ?", 1200).Find(&members)
+			if len(members) == 0 {
+				res.NotFound(c, "notfound")
+				return
+			}
+
+			res.OKWithData(c, members)
 		},
 	})
 }

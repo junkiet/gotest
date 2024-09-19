@@ -2,6 +2,7 @@ package main
 
 import (
 	"goapi/controller"
+	"goapi/mysql"
 
 	"github.com/gin-gonic/gin"
 )
@@ -9,6 +10,9 @@ import (
 func main() {
 	gin.SetMode(gin.ReleaseMode)
 	r := gin.Default()
+
+	// Initialize the database
+	mysql.Init()
 
 	// Load routes from controllers
 	controller.RegisterRoutes(r)
