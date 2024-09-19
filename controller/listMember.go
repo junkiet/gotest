@@ -15,8 +15,6 @@ func init() {
 		Handler: func(c *gin.Context) {
 			var members []model.Member
 
-			// find member ID = 3, and return in json
-
 			mysql.DB.Where("id = ?", 1200).Find(&members)
 			if len(members) == 0 {
 				res.NotFound(c, "notfound")
